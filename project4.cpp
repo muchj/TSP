@@ -13,6 +13,8 @@ Instructions:
 #include <cmath>
 #include <cstdlib>
 #include <climits>
+#include <limits>
+#include <vector>
 
 
 #define MAX_GRID_SIZE 40
@@ -79,11 +81,54 @@ int main(int argc, char *argv[])
 
 	printCityData(numCities, cityData, distanceGrid); // Used for testing.
 
-	/***********************************************************
+	/**********************************************************/
+	//The algorithm
+	int currentCity, nextCity;
+	int minDistance;
+	vector<int> tour;
+	tour.resize(numCities + 1, -1);
+		
+	currentCity = 0;
+
+	for(int j = 0; j < numCities; j++)
+	{
+		minDistance = numeric_limits<int>::max();
+		tour[j] = currentCity;
+		for(int i = 0; i < numCities; i++)
+		{
+			if(i != currentCity && distanceGrid[currentCity][i] < minDistance && !(find(tour.begin(), tour.end(), i) != tour.end()))
+			{
+				minDistance = distanceGrid[currentCity][i];
+				nextCity = i;
+			}
+		}
+		currentCity = nextCity;
+	}
+	tour[numCities] = 0;
 	
-				RUN ALGORITHMS HERE
+	//displaying tour route
+	cout << "Tour Route: " << endl;
+	for(int i = 0; i <= numCities-1; i++)
+	{
+		cout << tour[i] << '\n';
+	}
+	cout << endl;
 	
-	************************************************************/
+	//displaying total cost
+	int cost; 
+	int totalCost = 0;
+	int tourLength = tour.size();
+
+	for(int i = 0; i < tourLength - 1; i++)
+	{
+		currentCity = tour[i];
+		nextCity = tour[i+1];
+		cost = distanceGrid[currentCity][nextCity];
+		totalCost += cost;
+	}
+	cout << "Total cost: " << totalCost << endl;
+	
+	/************************************************************/
 
 	return 0;
 }
