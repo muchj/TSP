@@ -11,7 +11,7 @@
 
 /*****************************************************************/
 /*****************************************************************/
-//FUNCTION decVarLARATION
+//FUNCTION DECLARATION
 /*****************************************************************/
 /*****************************************************************/
 void get_input(char* fName, std::vector< std::vector<int> >& matrix);
@@ -22,7 +22,7 @@ std::vector<int> two_optSwap(std::vector<int> nnTour, int swapFront, int swapEnd
 
 /*****************************************************************/
 /*****************************************************************/
-//CLASS decVarLARATION
+//CLASS DECLARATION
 /*****************************************************************/
 /*****************************************************************/
 class point{
@@ -174,7 +174,7 @@ std::vector<int> two_opt(std::vector<int> nnTour, std::vector< std::vector<int> 
 	int size = nnTour.size();
 	bool improve = false;
 	std::vector<int> finalTour = nnTour;
-  	clock_t max_time = CLOCKS_PER_SEC * 15;
+  	clock_t max_time = CLOCKS_PER_SEC * 30;
   	clock_t loop_time;
   	clock_t current_time;
 	
